@@ -42,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mPairedButton;
 
+    private Button mSendPrevButton;
+
+    private Button mSendNextButton;
+
+    private Button mSendLessBright;
+
+    private Button mSendMoreBright;
+
     private Button mDisconnectButton;
 
     private LinearLayout mConnectionLayout;
@@ -83,6 +91,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mSendPrevButton = (Button) findViewById(R.id.sendPrevPattern);
+        mSendPrevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSmoothBluetooth.send("l", mCRLFBox.isChecked());
+                mMessageInput.setText("");
+            }
+        });
+
+        mSendNextButton = (Button) findViewById(R.id.sendNextPattern);
+        mSendNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSmoothBluetooth.send("n", mCRLFBox.isChecked());
+                mMessageInput.setText("");
+            }
+        });
+
+        mSendLessBright = (Button) findViewById(R.id.sendLessBright);
+        mSendLessBright.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSmoothBluetooth.send("b", mCRLFBox.isChecked());
+                mMessageInput.setText("");
+            }
+        });
+
+        mSendMoreBright = (Button) findViewById(R.id.sendMoreBright);
+        mSendMoreBright.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSmoothBluetooth.send("B", mCRLFBox.isChecked());
+                mMessageInput.setText("");
+            }
+        });
 
         mDisconnectButton = (Button) findViewById(R.id.disconnect);
         mDisconnectButton.setOnClickListener(new View.OnClickListener() {
@@ -220,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
 
             final MaterialDialog dialog = new MaterialDialog.Builder(MainActivity.this)
                     .title("Devices")
-                    .adapter(new DevicesAdapter(MainActivity.this, deviceList))
+                    .adapter(new DevicesAdapter(MainActivity.this, deviceList),null)
                     .build();
 
             ListView listView = dialog.getListView();
@@ -242,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataReceived(int data) {
             mBuffer.add(data);
-            if (data == 62 && !mBuffer.isEmpty()) {
+            if (data == 10 && !mBuffer.isEmpty()) {
             //if (data == 0x0D && !mBuffer.isEmpty() && mBuffer.get(mBuffer.size()-2) == 0xA0) {
                 StringBuilder sb = new StringBuilder();
                 for (int integer : mBuffer) {

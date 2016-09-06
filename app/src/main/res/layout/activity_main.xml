@@ -46,13 +46,49 @@
 
         <ListView
             android:id="@+id/responses"
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:layout_gravity="top" />
+
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.47">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Previous Pattern"
+                android:id="@+id/sendPrevPattern" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next Pattern"
+                android:id="@+id/sendNextPattern" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="8"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.41">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Less Bright"
+                android:id="@+id/sendLessBright" />
 
-
-        
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More Bright"
+                android:id="@+id/sendMoreBright" />
+        </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"

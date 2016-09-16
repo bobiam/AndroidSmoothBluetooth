@@ -18,6 +18,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int ENABLE_BT__REQUEST = 1;
 
-    private SmoothBluetooth mSmoothBluetooth;
-
-    private Button mScanButton;
+    private static SmoothBluetooth mSmoothBluetooth;
 
     private TextView mStateTv;
 
@@ -46,9 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mSendNextButton;
 
-    private Button mSendLessBright;
-
-    private Button mSendMoreBright;
+    private SeekBar mSeekBrightBar;
 
     private Button mDisconnectButton;
 
@@ -56,14 +53,26 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText mMessageInput;
 
+    private Long lastSentTime;
+
     private Button mSendButton;
 
-    private CheckBox mCRLFBox;
+    private Button mPickPattern;
+
+    private static CheckBox mCRLFBox;
 
     private List<Integer> mBuffer = new ArrayList<>();
     private List<String> mResponseBuffer = new ArrayList<>();
 
     private ArrayAdapter<String> mResponsesAdapter;
+
+    public static SmoothBluetooth getmSmoothBluetooth(){
+        return mSmoothBluetooth;
+    }
+
+    public static CheckBox getmCRLFBox(){
+        return mCRLFBox;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mSmoothBluetooth.send("l", mCRLFBox.isChecked());
-                mMessageInput.setText("");
             }
         });
 
@@ -105,26 +113,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mSmoothBluetooth.send("n", mCRLFBox.isChecked());
-                mMessageInput.setText("");
             }
         });
 
-        mSendLessBright = (Button) findViewById(R.id.sendLessBright);
-        mSendLessBright.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mSmoothBluetooth.send("b", mCRLFBox.isChecked());
-                mMessageInput.setText("");
-            }
-        });
+        lastSentTime = System.currentTimeMillis();
 
-        mSendMoreBright = (Button) findViewById(R.id.sendMoreBright);
-        mSendMoreBright.setOnClickListener(new View.OnClickListener() {
+        mSeekBrightBar = (SeekBar) findViewById(R.id.seekBright);
+        mSeekBrightBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
             @Override
-            public void onClick(View v) {
-                mSmoothBluetooth.send("B", mCRLFBox.isChecked());
-                mMessageInput.setText("");
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
             }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+                if(System.currentTimeMillis() - lastSentTime > 100) {
+                    mSmoothBluetooth.send("b", mCRLFBox.isChecked());
+                    mSmoothBluetooth.send(String.valueOf(seekBar.getProgress()), mCRLFBox.isChecked());
+                    lastSentTime = System.currentTimeMillis();
+                }
+            }
+
         });
 
         mDisconnectButton = (Button) findViewById(R.id.disconnect);
@@ -139,14 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
         mConnectionLayout = (LinearLayout) findViewById(R.id.connection);
 
-        mScanButton = (Button) findViewById(R.id.scan);
-        mScanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mSmoothBluetooth.doDiscovery();
-            }
-        });
-
         mPairedButton = (Button) findViewById(R.id.paired);
         mPairedButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +161,16 @@ public class MainActivity extends AppCompatActivity {
                 mSmoothBluetooth.tryConnection();
             }
         });
+
+        mPickPattern = (Button) findViewById(R.id.pickPattern);
+        mPickPattern.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent pat = new Intent(MainActivity.this, io.palaima.smoothbluetooth.app.PatternActivity.class);
+                startActivity(pat);
+            }
+        });
+
         mStateTv = (TextView) findViewById(R.id.state);
         mStateTv.setText("Disconnected");
         mDeviceTv = (TextView) findViewById(R.id.device);
@@ -240,6 +257,11 @@ public class MainActivity extends AppCompatActivity {
             if (device.isPaired()) {
                 mSmoothBluetooth.doDiscovery();
             }
+        }
+
+        public void writeTolog(String data){
+            mResponseBuffer.add(0, data);
+            mResponsesAdapter.notifyDataSetChanged();
         }
 
         @Override

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <GridLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="io.palaima.smoothbluetooth.app.PatternActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rowCount="7"
+        android:columnCount="3"
+        android:configChanges="orientation"
+        android:layout_centerHorizontal="true">
+
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern0"
+            android:id="@+id/sendPattern0" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern1"
+            android:id="@+id/sendPattern1" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern2"
+            android:id="@+id/sendPattern2" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern3"
+            android:id="@+id/sendPattern3" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern4"
+            android:id="@+id/sendPattern4" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern5"
+            android:id="@+id/sendPattern5" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern6"
+            android:id="@+id/sendPattern6" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern7"
+            android:id="@+id/sendPattern7" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern8"
+            android:id="@+id/sendPattern8" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern9"
+            android:id="@+id/sendPattern9" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern10"
+            android:id="@+id/sendPattern10" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern11"
+            android:id="@+id/sendPattern11" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern12"
+            android:id="@+id/sendPattern12" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern13"
+            android:id="@+id/sendPattern13" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern14"
+            android:id="@+id/sendPattern14" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern15"
+            android:id="@+id/sendPattern15" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern16"
+            android:id="@+id/sendPattern16" />
+
+        <Button
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:text="@string/pattern17"
+            android:id="@+id/sendPattern17" />
+
+    </GridLayout>

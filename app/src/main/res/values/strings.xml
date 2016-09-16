@@ -4,5 +4,25 @@
     <string name="app_name">DasBlinkencloudUI</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_patterns">patterns</string>
+    <string name='disconnect'>Disconnect</string>
+    <string name="pattern0">Lightning</string>
+    <string name="pattern1">Rainbow\nCylon</string>
+    <string name="pattern2">Rainbow\nLightning</string>
+    <string name="pattern3">BW Rand</string>
+    <string name="pattern4">Red Rand</string>
+    <string name="pattern5">Green Rand</string>
+    <string name="pattern6">Blue Rand</string>
+    <string name="pattern7">Flashlight</string>
+    <string name="pattern8">Rainbow</string>
+    <string name="pattern9">Rainbow\nGlitter</string>
+    <string name="pattern10">Confetti</string>
+    <string name="pattern11">Sinelon</string>
+    <string name="pattern12">Juggle</string>
+    <string name="pattern13">BPM</string>
+    <string name="pattern14">Fire Rand</string>
+    <string name="pattern15">Water Rand</string>
+    <string name="pattern16">Earth Rand</string>
+    <string name="pattern17">Air Rand</string>
 
 </resources>

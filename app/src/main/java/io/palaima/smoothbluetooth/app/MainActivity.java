@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
     private SeekBar mSeekBrightBar;
 
+    private SeekBar mSeekSpeedBar;
+
     private Button mDisconnectButton;
 
     private LinearLayout mConnectionLayout;
@@ -139,7 +141,29 @@ public class MainActivity extends AppCompatActivity {
                     lastSentTime = System.currentTimeMillis();
                 }
             }
+        });
 
+        mSeekSpeedBar = (SeekBar) findViewById(R.id.seekSpeed);
+        mSeekSpeedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+                if(System.currentTimeMillis() - lastSentTime > 100) {
+                    mSmoothBluetooth.send("s", mCRLFBox.isChecked());
+                    mSmoothBluetooth.send(String.valueOf(seekBar.getProgress()), mCRLFBox.isChecked());
+                    lastSentTime = System.currentTimeMillis();
+                }
+            }
         });
 
         mDisconnectButton = (Button) findViewById(R.id.disconnect);

@@ -118,6 +118,26 @@
                 android:indeterminate="false" />
         </LinearLayout>
 
+        <TextView
+            android:text="Framerate:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.41">
+
+            <SeekBar
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekSpeed"
+                android:layout_weight="1"
+                android:max="255"
+                android:indeterminate="false" />
+        </LinearLayout>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
